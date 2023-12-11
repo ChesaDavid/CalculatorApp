@@ -41,6 +41,6 @@ If you encounter any issues or bugs while using the Calculator App, please repor
 This Calculator App is licensed under the MIT License. Feel free to use, modify, and distribute it as needed.
 
 # Contact
-For any inquiries or feedback, please contact the maintainers at david.chesa.it@gmail.cpm .
+For any inquiries or feedback, please contact the maintainers at david.chesa.it@gmail.com .
 
 **Thank you for using the Calculator App! Happy calculating!**
