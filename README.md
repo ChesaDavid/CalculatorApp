@@ -14,7 +14,7 @@ Clone the Repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/calculator-app.git
+git@github.com:ChesaDavid/CalculatorApp.git
 Navigate to the Project Directory:
 
 bash
