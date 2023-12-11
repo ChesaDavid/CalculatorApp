@@ -10,16 +10,14 @@ Welcome to the Calculator App repository! This simple yet powerful calculator ap
 # Getting Started
 Follow these steps to get the Calculator App up and running on your local machine.
 
-Clone the Repository:
+1 Clone the Repository:
+  bash              Copy code
+  git@github.com:ChesaDavid/CalculatorApp.git
+  
+2 Navigate to the Project Directory:
+  bash               Copy code
+  cd calculator-app
 
-bash
-Copy code
-git@github.com:ChesaDavid/CalculatorApp.git
-Navigate to the Project Directory:
-
-bash
-Copy code
-cd calculator-app
 Open the Calculator App:
 
 Open the index.html file in your preferred web browser.
