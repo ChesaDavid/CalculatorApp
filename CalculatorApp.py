@@ -1,7 +1,7 @@
 import tkinter as tk
 import cmath as cm
-
-
+import pyautogui 
+import pygame as pg
 
 field_text=""
 field_text1=""
@@ -115,6 +115,7 @@ def ScientificMode():
 
 def standardMode():
     window.title("Standard")
+    btn_ln.destroy()
     
     btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
     btn_1.grid(row=4,column=1)
@@ -175,7 +176,7 @@ def standardMode():
 
     btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
     btn_scientificMode.grid(row=6,column=2)
-
+    
 
 
 window=tk.Tk()
@@ -212,7 +213,8 @@ btn_equal=tk.Button(window, text="=", command=lambda:calculate(),width=5,font=("
 btn_clear=tk.Button(window, text="clear", command=lambda:clear(),width=5,font=("Times New Roman",13))
 btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",8))
 
-
-    
+pressed = pg.key.get_pressed()
+if pressed[pg.K_0]:
+    add_to_field('0')
 standardMode()
 window.mainloop()
