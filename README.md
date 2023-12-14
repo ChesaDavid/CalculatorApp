@@ -16,12 +16,12 @@ Follow these steps to get the Calculator App up and running on your local machin
   ````
 2 Navigate to the Project Directory:
  ``` bash 
-  cd calculator-app
+  cd .\CalculatorApp
   ````
 3 Open the Calculator App:
   Go on the comand line at the project adress and write
   ```bash
-    py  `/CalculatorApp.py`
+  py .\CalculatorApp.py   
 ````
 4 Start Calculating:
 
