@@ -1,8 +1,5 @@
 import tkinter as tk
-import cmath as cm
-import pyautogui 
-import pygame as pg
-import time 
+import keyboard as key
 import math
 
 field_text=""
@@ -14,6 +11,8 @@ field = tk.Text(window,height="2",width="21",font=("Times New Roman",20))
 field.grid(row="1" ,column="1", columnspan="6")
 
 
+mode = True
+startApp = 1
 def add_to_field( sth ):
     global field_text
     field_text = field_text + str(sth)
@@ -22,9 +21,10 @@ def add_to_field( sth ):
     
 def calculate():
     global filed_text
-    result = str(eval(field_text))
+    result = int(eval(field_text))
+    clear()
     field.delete("1.0","end")
-    field.insert("1.0",result)
+    add_to_field(result)
     
 def clear():
     global field_text
@@ -123,6 +123,8 @@ btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMod
 ## The scientific Mode of the Calculator app
 def ScientificMode():
     window.title("Scientific")
+    global mode
+    mode = False
 
     btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=5,font=("Times New Roman",13))
     btn_ln.grid(row=7,column=4)
@@ -212,6 +214,9 @@ def ScientificMode():
 def standardMode():
     window.title("Standard")
 
+    global mode
+    mode = True
+    
     btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
     btn_1.grid(row=4,column=1)
 
@@ -274,8 +279,40 @@ def standardMode():
     
 
 
+key.add_hotkey('esc',window.destroy)
+key.add_hotkey('1',lambda:add_to_field(1))
+key.add_hotkey('2',lambda:add_to_field(2))
+key.add_hotkey('3',lambda:add_to_field(3))
+key.add_hotkey('4',lambda:add_to_field(4))
+key.add_hotkey('5',lambda:add_to_field(5))
+key.add_hotkey('6',lambda:add_to_field(6))
+key.add_hotkey('7',lambda:add_to_field(7))
+key.add_hotkey('8',lambda:add_to_field(8))
+key.add_hotkey('9',lambda:add_to_field(9))
+key.add_hotkey('0',lambda:add_to_field(0))
+key.add_hotkey('=',lambda:calculate())
+key.add_hotkey('enter',lambda:calculate())
+key.add_hotkey('shift + =',lambda:add_to_field('+'))
+key.add_hotkey('shift + 8',lambda:add_to_field('*'))
+key.add_hotkey('/',lambda:add_to_field('/'))
+key.add_hotkey('-',lambda:add_to_field('-'))
+key.add_hotkey('delete',lambda:clear())
+key.add_hotkey('tab',lambda:ScientificMode())
 
-standardMode()
-standardMode()
-btn_ln.grid_remove()
-window.mainloop()
+if startApp == 1:
+    standardMode()
+    startApp = 2
+
+while mode==True:
+    btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=0,font=("Times New Roman",0))
+    btn_log=tk.Button(window, text="log2()", command=lambda:log2(),width=0,font=("Times New Roman",0))
+    btn_2topowerof=tk.Button(window, text="2()", command=lambda:pow2(),width=0,font=("Times New Roman",0))
+    btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:sqrt(),width=0,font=("Times New Roman",0))
+    btn_factorial=tk.Button(window, text="!", command=lambda:factorial(),width=0,font=("Times New Roman",0))
+    btn_sin=tk.Button(window, text="sin", command=lambda:sin(),width=0,font=("Times New Roman",0))
+    btn_pi=tk.Button(window, text="pi", command=lambda:add_to_field("3.14159265359"),width=0,font=("Times New Roman",0))
+    btn_e=tk.Button(window, text="e", command=lambda:add_to_field(2.71828182846),width=0,font=("Times New Roman",0))
+    window.mainloop()
+while mode == False:
+    window.mainloop()
+
