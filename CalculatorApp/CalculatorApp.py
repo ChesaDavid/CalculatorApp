@@ -22,27 +22,40 @@ def clear():
     field_text=""
     field.delete("1.0","end")
     field.insert("1.0",field_text)
-def calculateScientific():
-    global field_text
+
 def ln():
-    print("What value to ln? ")
-    m = input
-    a=math.log(m,base=math.e)
-    add_to_field(a)
+    global field_text
+    result = int(eval(field_text))
+    clear()
+    e = 2.71828182846
+    naturalLogaritmh = math.log(result,e)
+    add_to_field(naturalLogaritmh)
+    
 def log(m):
     a = math.log(m,base=2)
     add_to_field(a)
-def pow2(m):
-    a=2**m
-    add_to_field(a)
-def sqrt(m):
-    a = math.sqrt(m)
-    add_to_field(a)
-def factorial(m):
-    i = 1
+    
+def pow2():
+    global field_text
+    result = int(eval(field_text))
+    clear()
+    power2 = 2 ** result
+    add_to_field(power2)
+    
+def sqrt():
+    global field_text
+    result = int(eval(field_text))
+    clear()
+    squar = math.sqrt(result)
+    add_to_field(squar)
+    
+def factorial():
+    global field_text
+    result = int(eval(field_text))
+    clear()
     factorial = 1
-    for i in  m:
-         factorial = factorial * i
+    for i in  range(result):
+         factorial = factorial * (i+1)
     add_to_field(factorial)
 
 
@@ -50,7 +63,7 @@ def factorial(m):
 def ScientificMode():
     window.title("Scientific")
 
-    btn_ln=tk.Button(window, text="ln", command=lambda:ln(m = input()),width=5,font=("Times New Roman",13))
+    btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=5,font=("Times New Roman",13))
     btn_ln.grid(row=7,column=4)
 
     btn_sin=tk.Button(window, text="sin", command=lambda:add_to_field("sin("),width=5,font=("Times New Roman",13))
@@ -65,13 +78,13 @@ def ScientificMode():
     btn_log=tk.Button(window, text="log()", command=lambda:add_to_field("log"),width=5,font=("Times New Roman",13))
     btn_log.grid(row=8,column=3)
 
-    btn_2topowerof=tk.Button(window, text="2()", command=lambda:add_to_field("2("),width=5,font=("Times New Roman",13))
+    btn_2topowerof=tk.Button(window, text="2()", command=lambda:pow2(),width=5,font=("Times New Roman",13))
     btn_2topowerof.grid(row=7,column=3)
 
-    btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:add_to_field("sqrt("),width=5,font=("Times New Roman",13))
+    btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:sqrt(),width=5,font=("Times New Roman",13))
     btn_squerRoot.grid(row=6,column=4)
 
-    btn_factorial=tk.Button(window, text="!", command=lambda:add_to_field("!"),width=5,font=("Times New Roman",13))
+    btn_factorial=tk.Button(window, text="!", command=lambda:factorial(),width=5,font=("Times New Roman",13))
     btn_factorial.grid(row=7,column=1)
 
     btn_pi=tk.Button(window, text="pi", command=lambda:add_to_field("3.14159265359"),width=5,font=("Times New Roman",13))
