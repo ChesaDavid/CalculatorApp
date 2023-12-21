@@ -14,7 +14,6 @@ field = tk.Text(window,height="2",width="21",font=("Times New Roman",20))
 field.grid(row="1" ,column="1", columnspan="6")
 
 
-mode = 1
 def add_to_field( sth ):
     global field_text
     field_text = field_text + str(sth)
@@ -124,8 +123,7 @@ btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMod
 ## The scientific Mode of the Calculator app
 def ScientificMode():
     window.title("Scientific")
-    global mode 
-    mode = 0
+
     btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=5,font=("Times New Roman",13))
     btn_ln.grid(row=7,column=4)
 
@@ -213,8 +211,7 @@ def ScientificMode():
 
 def standardMode():
     window.title("Standard")
-    global mode
-    mode = 1
+
     btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
     btn_1.grid(row=4,column=1)
 
@@ -278,14 +275,7 @@ def standardMode():
 
 
 
-
-if mode == 1:
-    btn_ln.grid_remove()
-    btn_pi.grid_remove()
-    btn_squerRoot.grid_remove()
-    btn_sin.grid_remove()
-    btn_factorial.grid_remove()
-
+standardMode()
 standardMode()
 btn_ln.grid_remove()
 window.mainloop()
