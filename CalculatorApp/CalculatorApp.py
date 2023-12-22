@@ -1,6 +1,8 @@
 import tkinter as tk
 import keyboard as key
 import math
+import time as t
+
 
 field_text=""
 window=tk.Tk()
@@ -10,9 +12,9 @@ window.configure(bg="White")
 field = tk.Text(window,height="2",width="21",font=("Times New Roman",20))
 field.grid(row="1" ,column="1", columnspan="6")
 
+time = t.time()
+mode = False
 
-mode = True
-startApp = 1
 def add_to_field( sth ):
     global field_text
     field_text = field_text + str(sth)
@@ -20,7 +22,7 @@ def add_to_field( sth ):
     field.insert("1.0",field_text)
     
 def calculate():
-    global filed_text
+    global field_text
     result = int(eval(field_text))
     clear()
     field.delete("1.0","end")
@@ -34,7 +36,7 @@ def clear():
 
 def ln():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     e = 2.71828182846
     naturalLogaritmh = math.log(result,e)
@@ -42,7 +44,7 @@ def ln():
     
 def log2():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     logaritmBaseTwo = math.log2(result)
     add_to_field(logaritmBaseTwo)
@@ -63,7 +65,7 @@ def twoPower():
     
 def sqrt():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     squar = math.sqrt(result)
     add_to_field(squar)
@@ -84,6 +86,14 @@ def sin():
     sinus = math.sin(result)
     add_to_field(sinus)
 
+def Error():
+    clear()
+    add_to_field("Invalid syntax")
+    window.destroy
+
+
+def deleteSientificButtons():
+    window.grid_size([6,4])
 
 
 #Scientific suplementary buttons
@@ -92,10 +102,10 @@ btn_log=tk.Button(window, text="log2()", command=lambda:log2(),width=5,font=("Ti
 btn_2topowerof=tk.Button(window, text="2()", command=lambda:pow2(),width=5,font=("Times New Roman",13))
 btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:sqrt(),width=5,font=("Times New Roman",13))
 btn_factorial=tk.Button(window, text="!", command=lambda:factorial(),width=5,font=("Times New Roman",13))
-btn_sin=tk.Button(window, text="sin", command=lambda:sin(),width=5,font=("Times New Roman",13))
 btn_pi=tk.Button(window, text="pi", command=lambda:add_to_field("3.14159265359"),width=5,font=("Times New Roman",13))
 btn_e=tk.Button(window, text="e", command=lambda:add_to_field(2.71828182846),width=5,font=("Times New Roman",13))
-
+btn_pow=tk.Button(window, text="pow2(", command=lambda:twoPower(),width=5,font=("Times New Roman",13))
+items =[]
 #Standard buttons
 btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
 btn_2=tk.Button(window, text="2", command=lambda:add_to_field(2),width=5,font=("Times New Roman",13))
@@ -116,21 +126,19 @@ btn_openparantese1=tk.Button(window, text="(", command=lambda:add_to_field("("),
 btn_openparantese2=tk.Button(window, text=")", command=lambda:add_to_field(")"),width=5,font=("Times New Roman",13))
 btn_equal=tk.Button(window, text="=", command=lambda:calculate(),width=5,font=("Times New Roman",13))
 btn_clear=tk.Button(window, text="clear", command=lambda:clear(),width=5,font=("Times New Roman",13))
-btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",8))
-
+btn_standardMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
+btn_scientificMode=tk.Button(window, text="Stand", command=lambda:standardMode(),width=5,font=("Times New Roman",13))
 
 
 ## The scientific Mode of the Calculator app
 def ScientificMode():
     window.title("Scientific")
-    global mode
+    clear()
+    global mode 
     mode = False
 
     btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=5,font=("Times New Roman",13))
     btn_ln.grid(row=7,column=4)
-
-    btn_sin=tk.Button(window, text="sin", command=lambda:add_to_field("sin("),width=5,font=("Times New Roman",13))
-    btn_sin.grid(row=8,column=1)
 
     btn_e=tk.Button(window, text="e", command=lambda:add_to_field(2.71828182846),width=5,font=("Times New Roman",13))
     btn_e.grid(row=8,column=2)
@@ -145,13 +153,16 @@ def ScientificMode():
     btn_2topowerof.grid(row=7,column=3)
 
     btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:sqrt(),width=5,font=("Times New Roman",13))
-    btn_squerRoot.grid(row=6,column=4)
+    btn_squerRoot.grid(row=8,column=1)
 
     btn_factorial=tk.Button(window, text="!", command=lambda:factorial(),width=5,font=("Times New Roman",13))
     btn_factorial.grid(row=7,column=1)
 
     btn_pi=tk.Button(window, text="pi", command=lambda:add_to_field(3.14159265359),width=5,font=("Times New Roman",13))
     btn_pi.grid(row=7,column=2)
+
+    btn_0=tk.Button(window, text="0", command=lambda:add_to_field(0),width=5,font=("Times New Roman",13))
+    btn_0.grid(row=5,column=1)
 
     btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
     btn_1.grid(row=4,column=1)
@@ -210,13 +221,23 @@ def ScientificMode():
     btn_scientificMode=tk.Button(window, text="Stand", command=lambda:standardMode(),width=5,font=("Times New Roman",13))
     btn_scientificMode.grid(row=6,column=2)
     
+    items.append(btn_ln)
+    items.append(btn_log)
+    items.append(btn_squerRoot)
+    items.append(btn_pow)
+    items.append(btn_2topowerof)
+    items.append(btn_e)
+    items.append(btn_pi)
+    items.append(btn_factorial)
+
+
 
 def standardMode():
     window.title("Standard")
-
+    clear()
     global mode
     mode = True
-    
+
     btn_1=tk.Button(window, text="1", command=lambda:add_to_field(1),width=5,font=("Times New Roman",13))
     btn_1.grid(row=4,column=1)
 
@@ -257,7 +278,7 @@ def standardMode():
     btn_multiply.grid(row=4,column=4)
 
     btn_divison=tk.Button(window, text="/", command=lambda:add_to_field("/"),width=5,font=("Times New Roman",13))
-    btn_divison.grid(row=5,column=4)
+    btn_divison.grid(row=6,column=4)
 
     btn_point=tk.Button(window, text=".", command=lambda:add_to_field("."),width=5,font=("Times New Roman",13))
     btn_point.grid(row=5,column=2)
@@ -274,45 +295,35 @@ def standardMode():
     btn_clear=tk.Button(window, text="clear", command=lambda:clear(),width=5,font=("Times New Roman",13))
     btn_clear.grid(row=6,column=3)
 
-    btn_scientificMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
-    btn_scientificMode.grid(row=6,column=2)
-    
+    btn_standardMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
+    btn_standardMode.grid(row=6,column=2)
 
 
-key.add_hotkey('esc',window.destroy)
-key.add_hotkey('1',lambda:add_to_field(1))
-key.add_hotkey('2',lambda:add_to_field(2))
-key.add_hotkey('3',lambda:add_to_field(3))
-key.add_hotkey('4',lambda:add_to_field(4))
-key.add_hotkey('5',lambda:add_to_field(5))
-key.add_hotkey('6',lambda:add_to_field(6))
-key.add_hotkey('7',lambda:add_to_field(7))
-key.add_hotkey('8',lambda:add_to_field(8))
-key.add_hotkey('9',lambda:add_to_field(9))
-key.add_hotkey('0',lambda:add_to_field(0))
-key.add_hotkey('=',lambda:calculate())
-key.add_hotkey('enter',lambda:calculate())
-key.add_hotkey('shift + =',lambda:add_to_field('+'))
-key.add_hotkey('shift + 8',lambda:add_to_field('*'))
-key.add_hotkey('/',lambda:add_to_field('/'))
-key.add_hotkey('-',lambda:add_to_field('-'))
-key.add_hotkey('delete',lambda:clear())
-key.add_hotkey('tab',lambda:ScientificMode())
-
-if startApp == 1:
-    standardMode()
-    startApp = 2
-
-while mode==True:
-    btn_ln=tk.Button(window, text="ln", command=lambda:ln(),width=0,font=("Times New Roman",0))
-    btn_log=tk.Button(window, text="log2()", command=lambda:log2(),width=0,font=("Times New Roman",0))
-    btn_2topowerof=tk.Button(window, text="2()", command=lambda:pow2(),width=0,font=("Times New Roman",0))
-    btn_squerRoot=tk.Button(window, text="sqrt", command=lambda:sqrt(),width=0,font=("Times New Roman",0))
-    btn_factorial=tk.Button(window, text="!", command=lambda:factorial(),width=0,font=("Times New Roman",0))
-    btn_sin=tk.Button(window, text="sin", command=lambda:sin(),width=0,font=("Times New Roman",0))
-    btn_pi=tk.Button(window, text="pi", command=lambda:add_to_field("3.14159265359"),width=0,font=("Times New Roman",0))
-    btn_e=tk.Button(window, text="e", command=lambda:add_to_field(2.71828182846),width=0,font=("Times New Roman",0))
+try:
+    key.add_hotkey('esc',window.destroy)
+    key.add_hotkey('1',lambda:add_to_field(1))
+    key.add_hotkey('2',lambda:add_to_field(2))
+    key.add_hotkey('3',lambda:add_to_field(3))
+    key.add_hotkey('4',lambda:add_to_field(4))
+    key.add_hotkey('5',lambda:add_to_field(5))
+    key.add_hotkey('6',lambda:add_to_field(6))
+    key.add_hotkey('7',lambda:add_to_field(7))
+    key.add_hotkey('8',lambda:add_to_field(8))
+    key.add_hotkey('9',lambda:add_to_field(9))
+    key.add_hotkey('0',lambda:add_to_field(0))
+    key.add_hotkey('=',lambda:calculate())
+    key.add_hotkey('enter',lambda:calculate())
+    key.add_hotkey('shift + =',lambda:add_to_field('+'))
+    key.add_hotkey('shift + 8',lambda:add_to_field('*'))
+    key.add_hotkey('/',lambda:add_to_field('/'))
+    key.add_hotkey('-',lambda:add_to_field('-'))
+    key.add_hotkey('c', lambda:clear())
+    key.add_hotkey('w',lambda:ScientificMode())
+    key.add_hotkey('q',lambda:standardMode())
+    if mode == True:
+        deleteSientificButtons()
+    local_field = field_text
     window.mainloop()
-while mode == False:
-    window.mainloop()
-
+    exec(local_field)
+except SyntaxError:
+    print("stop")

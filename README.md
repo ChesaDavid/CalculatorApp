@@ -23,7 +23,9 @@ Follow these steps to get the Calculator App up and running on your local machin
   ```bash
   py .\CalculatorApp.py   
 ````
-4 Start Calculating:
+4 Prees 'w'
+
+5 Start Calculating:
 
 Explore the various features and functionalities of the calculator.
 
