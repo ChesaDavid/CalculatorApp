@@ -60,4 +60,5 @@ For any inquiries or feedback, please contact the administrator at david.chesa.i
 - An Invalid Syntax error to work (at the moment it does not)
  
  This new features will be incorporated in the version 2.0 of the calculator app
- This project was been made for the CV mainly for University and work interviews
+ 
+ This project has been made for the CV mainly for University and work interviews
