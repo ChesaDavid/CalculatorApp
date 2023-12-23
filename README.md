@@ -1,11 +1,16 @@
 # CalculatorApp
 Welcome to the Calculator App repository! This simple yet powerful calculator app is designed to provide users with a straightforward and efficient tool for performing basic and advanced mathematical operations. Whether you're a student, professional, or anyone in need of quick calculations, this app has got you covered.
 
+
+
 # Features
 * Basic Operations: Perform addition, subtraction, multiplication, and division effortlessly.
-* Scientific Functions: Access a range of scientific functions, including trigonometric and logarithmic operations.
-* Memory Functions: Store and recall values with the memory functions, making it easy to handle multiple calculations.
+* Scientific Functions: Access a range of scientific functions, including logarithmic operations.
 * User-Friendly Interface: Enjoy a clean and intuitive design for a seamless user experience.
+* Press 'Q' to start the calculator 
+* Press 'W' to switch to sientific mode
+* Press 'Q' to move back to standard mode
+* Press 'esc' to exit the calculator
 
 # Getting Started
 Follow these steps to get the Calculator App up and running on your local machine.
@@ -28,7 +33,8 @@ Follow these steps to get the Calculator App up and running on your local machin
 5 Start Calculating:
 
 Explore the various features and functionalities of the calculator.
-# The features of the
+
+
 # Contributing
 We welcome contributions from the community to enhance the Calculator App. If you'd like to contribute, please follow these guidelines:
 
@@ -43,6 +49,14 @@ If you encounter any issues or bugs while using the Calculator App, please repor
 This Calculator App is licensed under the MIT License. Feel free to use, modify, and distribute it as needed.
 
 # Contact
-For any inquiries or feedback, please contact the maintainers at david.chesa.it@gmail.com .
+For any inquiries or feedback, please contact the administrator at david.chesa.it@gmail.com .
 
 **Thank you for using the Calculator App! Happy calculating!**
+
+# For those how want to help
+ The project needs help at making a:
+ -Memory store for the calculations made
+ -An Invalid Syntax error to work (at the moment it does not)
+ This new features will be incorporated in the cersion 2.0 of the calculator app
+
+This project was been made for the CV mainly for University and work interviews
