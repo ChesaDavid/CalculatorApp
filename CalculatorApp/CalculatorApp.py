@@ -4,7 +4,7 @@ import math
 import time as t
 
 
-field_text="Press ' q ' to start"
+field_text="Press  ' Q ' to start"
 window=tk.Tk()
 window.title("Calculator")
 window.configure(width="300" , height="300")
@@ -23,7 +23,7 @@ def add_to_field( sth ):
     
 def calculate():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     field.delete("1.0","end")
     add_to_field(result)
@@ -51,14 +51,14 @@ def log2():
         
 def pow2():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     power2 = 2 ** result
     add_to_field(power2)
     
 def twoPower():
     global field_text
-    result = int(eval(field_text))
+    result = float(eval(field_text))
     clear()
     toPowerTwo = result ** 2
     add_to_field(toPowerTwo)
@@ -79,18 +79,10 @@ def factorial():
          factorial = factorial * (i+1)
     add_to_field(factorial)
 
-def sin():
-    global field_text
-    result = int(eval(field_text))
-    clear()
-    sinus = math.sin(result)
-    add_to_field(sinus)
-
 def Error():
-    clear()
     add_to_field("Invalid syntax")
+    t.sleep(5)
     window.destroy
-
 
 
 
@@ -128,7 +120,12 @@ btn_clear=tk.Button(window, text="clear", command=lambda:clear(),width=5,font=("
 btn_standardMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
 btn_scientificMode=tk.Button(window, text="Stand", command=lambda:standardMode(),width=5,font=("Times New Roman",13))
 
- 
+def Check():
+    if key.is_pressed('a' or 'b' or 'c' or 'd' or 'e' or 'f'
+                       or 'g' or 'h' or 'i' or 'l' or 'm' or 
+                       ' k' or 'n' or 'p' or 'o' or 'r' or 't'
+                       or 'v' or 'j' or 'u' or 'y' or 's' or 'x' or 'z'):
+        raise SyntaxError(Error())
     
 ## The scientific Mode of the Calculator app
 def ScientificMode():
@@ -337,11 +334,11 @@ def standardMode():
 
     btn_standardMode=tk.Button(window, text="Scient", command=lambda:ScientificMode(),width=5,font=("Times New Roman",13))
     btn_standardMode.grid(row=6,column=2)
-
-if runtime == 0:
-    runtime = 1
-    add_to_field("")
 try:
+    if runtime == 0:
+        runtime = 1
+        add_to_field("")
+
     key.add_hotkey('esc',window.destroy)
     key.add_hotkey('1',lambda:add_to_field(1))
     key.add_hotkey('2',lambda:add_to_field(2))
@@ -362,8 +359,7 @@ try:
     key.add_hotkey('c', lambda:clear())
     key.add_hotkey('w',lambda:ScientificMode())
     key.add_hotkey('q',lambda:standardMode())
-    local_field = field_text
     window.mainloop()
-    exec(local_field)
-except SyntaxError:
+    Check()
+except:
     Error()
